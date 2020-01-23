@@ -1,11 +1,5 @@
 "use strict";
 
-jQuery(document.links)
-    .filter(function() {
-    return this.hostname != window.location.hostname;
-})
-    .attr('target', '_blank');
-
 function formatQueryParams(params) {
     const queryItems = Object.keys(params).map(key => `${[encodeURIComponent(key)]}=${encodeURIComponent(params[key])}`);
     return queryItems.join('&');
@@ -23,6 +17,12 @@ function displayResults(responseJson, maxResults) {
         </li>`);
     }
     $('.results').removeClass('hidden');
+
+    jQuery(document.links)
+    .filter(function() {
+    return this.hostname != window.location.hostname;
+})
+    .attr('target', '_blank');
 }
 
 function getParks(baseUrl, stateArr, maxResults, apiKey) {
